@@ -1,0 +1,49 @@
+@startuml
+class Persona {
+    - String nombre
+    - String apellidos
+    - Date fechaNacimiento
+    - String lugarNacimiento
+    - int edad
+    - double estatura
+    - String sexo
+    - String nivelEstudios
+    - String dni
+    - Municipio municipioCensado
+    - Direccion direccionCensado
+    - Residencia residencia
+}
+
+class Hombre extends Persona {
+    - String situacionMilitar
+}
+
+class Municipio {
+    - String codigo
+    - String nombre
+    - int poblacionRegistrada
+    - int poblacionResidente
+}
+
+class Direccion {
+    - String calle
+    - int numero
+    - Distrito distrito
+}
+
+class Residencia {
+    - Municipio municipio
+    - String pais
+    - Date fechaInicio
+}
+
+class Distrito {
+    - String nombre
+}
+
+Persona "1" -- "1" Municipio : censado_en
+Persona "1" -- "1" Direccion : tiene
+Persona "1" -- "1" Residencia : reside_en
+Municipio "1" -- "*" Distrito : contiene
+Direccion "1" -- "1" Distrito : pertenece_a
+@enduml
